@@ -10,10 +10,6 @@
   color:var(--light-ink);
 }
 
-.standalone-theme-toggle{position:fixed;z-index:44;left:18px;bottom:18px;min-height:44px;display:flex;align-items:center;gap:9px;padding:0 15px;border:1px solid rgba(213,161,72,.62);border-radius:24px;background:linear-gradient(145deg,#0b2630,#06161e);color:#f2d694;cursor:pointer;box-shadow:0 12px 32px rgba(0,0,0,.32);backdrop-filter:blur(12px)}
-.standalone-theme-toggle:hover{transform:translateY(-1px);filter:brightness(1.08)}
-[data-theme="light"] .standalone-theme-toggle{background:rgba(255,252,244,.96);border-color:#b97a25;color:#77501b;box-shadow:0 10px 25px rgba(92,61,20,.16)}
-
 /* Академия, обучение и Цифирная палата. */
 [data-theme="light"] .learning-site,[data-theme="light"] .learning-dashboard,[data-theme="light"] .learning-world,[data-theme="light"] .chamber-page{
   --academy-bg:#f4eee1;--academy-panel:#fffdf7;--academy-line:rgba(39,126,105,.28);--academy-gold:#9d6417;--academy-text:#172b3f;--academy-muted:#5d706a;
@@ -35,6 +31,24 @@
 [data-theme="light"] .dashboard-alert{background:linear-gradient(90deg,rgba(226,191,122,.35),rgba(244,238,225,.9));color:#24344d}
 [data-theme="light"] .learning-dashboard>aside nav button,[data-theme="light"] .dashboard-side-bottom button{color:#356a5c}
 [data-theme="light"] .learning-dashboard>aside nav button.active,[data-theme="light"] .learning-dashboard>aside nav button:hover{color:#8b5914;background:linear-gradient(90deg,rgba(201,143,44,.14),transparent)}
+
+/* Контраст зелёного мира: подписи и длинные тексты не растворяются на бумаге. */
+[data-theme="light"] .academy-stats span,[data-theme="light"] .academy-quick>button small,[data-theme="light"] .academy-quick>small,[data-theme="light"] .section-title p,[data-theme="light"] .academy-board small,[data-theme="light"] .academy-masters p,[data-theme="light"] .academy-testimonials footer,[data-theme="light"] .faq-layout article p,[data-theme="light"] .chamber-halls small,[data-theme="light"] .chamber-inputs label,[data-theme="light"] .chamber-result ol,[data-theme="light"] .chamber-empty,[data-theme="light"] .chamber-history small,[data-theme="light"] .dashboard-alert p,[data-theme="light"] .dashboard-stats small,[data-theme="light"] .dashboard-order-list p,[data-theme="light"] .dashboard-order-list small,[data-theme="light"] .dashboard-path p,[data-theme="light"] .dashboard-messages p span{color:#465b55}
+[data-theme="light"] .academy-stats b,[data-theme="light"] .dashboard-stats b{color:#08765e}
+[data-theme="light"] .academy-zurk-dialog{background:rgba(255,252,243,.94);border-color:rgba(174,113,31,.42);box-shadow:0 12px 30px rgba(73,49,18,.1)}
+[data-theme="light"] .academy-zurk-dialog b,[data-theme="light"] .academy-testimonials footer span,[data-theme="light"] .academy-board strong,[data-theme="light"] .academy-masters b{color:#8d5912}
+[data-theme="light"] .academy-zurk-dialog span,[data-theme="light"] .academy-testimonials p,[data-theme="light"] .son-hint p,[data-theme="light"] .chamber-empty p{color:#344c47}
+[data-theme="light"] .academy-board b,[data-theme="light"] .academy-testimonials footer,[data-theme="light"] .dashboard-order-list h3,[data-theme="light"] .dashboard-messages p b,[data-theme="light"] .chamber-history b{color:#21344b}
+[data-theme="light"] .academy-quick>button{color:#23795f;border-color:rgba(46,133,108,.22)}
+[data-theme="light"] .academy-quick>button:hover{background:rgba(37,130,101,.08)}
+[data-theme="light"] .academy-board button,[data-theme="light"] .academy-masters button,[data-theme="light"] .dashboard-alert button,[data-theme="light"] .dashboard-order-list article>button,[data-theme="light"] .dashboard-messages button,[data-theme="light"] .chamber-result>div:last-child button{background:#f8f2e6;color:#235845;border-color:rgba(39,123,94,.38)}
+[data-theme="light"] .academy-how{background:rgba(229,219,201,.32)}
+[data-theme="light"] .academy-testimonials{background:rgba(228,218,200,.3)}
+[data-theme="light"] .chamber-header-actions>span{color:#365e53}
+[data-theme="light"] .chamber-badges span{color:#78531a;border-color:rgba(166,106,24,.48);background:rgba(255,251,240,.72)}
+[data-theme="light"] .chamber-halls button{color:#294b43}
+[data-theme="light"] .chamber-halls button.active{background:linear-gradient(135deg,rgba(208,164,81,.22),rgba(241,235,220,.92));border-color:#a66a18}
+[data-theme="light"] .section-theme-toggle{background:#fffdf7;color:#293459;border-color:rgba(174,113,31,.62);box-shadow:inset 0 0 12px rgba(114,78,25,.08)}
 
 /* Единая авторизация двух миров. */
 [data-theme="light"] .auth-page.auth-worlds{color:#1a2c48;background:#eee5d6}
@@ -89,5 +103,4 @@
 
 @media(max-width:820px){
   [data-theme="light"] .learning-header nav,[data-theme="light"] .academy-header nav{background:#fffaf0;border-color:#a66d1d}
-  .standalone-theme-toggle span{display:none}.standalone-theme-toggle{width:46px;padding:0;justify-content:center}
 }

@@ -24,19 +24,20 @@ export default function PortalHome(props: Props) {
           <img src={`${BASE}brand/edustories-logo.webp`} alt="" width="74" height="80" />
           <span><b>EduStories</b><small>Знания оживают</small></span>
         </div>
-        <button className="portal-theme-toggle" onClick={props.onToggleTheme} aria-label={props.theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}>
-          <span className={props.theme === "light" ? "active" : ""}><Sun size={17} /></span>
-          <span className={props.theme === "dark" ? "active" : ""}><Moon size={17} /></span>
-          <small>{props.theme === "dark" ? "Тёмная" : "Светлая"}</small>
-        </button>
-        {props.isAuthenticated ? (
-          <button className="portal-account-button" onClick={props.onOpenProfile}>{props.displayName || "Личный кабинет"}</button>
-        ) : (
-          <nav className="portal-auth" aria-label="Авторизация">
-            <button onClick={props.onLogin}>Войти</button>
-            <button onClick={props.onRegister}>Регистрация</button>
-          </nav>
-        )}
+        <div className="portal-header-actions">
+          <button className="portal-theme-toggle" onClick={props.onToggleTheme} aria-label={props.theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}>
+            <span className={props.theme === "light" ? "active" : ""}><Sun size={17} /></span>
+            <span className={props.theme === "dark" ? "active" : ""}><Moon size={17} /></span>
+          </button>
+          {props.isAuthenticated ? (
+            <button className="portal-account-button" onClick={props.onOpenProfile}>{props.displayName || "Личный кабинет"}</button>
+          ) : (
+            <nav className="portal-auth" aria-label="Авторизация">
+              <button onClick={props.onLogin}>Войти</button>
+              <button onClick={props.onRegister}>Регистрация</button>
+            </nav>
+          )}
+        </div>
       </header>
 
       <main className="portal-content">

@@ -59,3 +59,61 @@
 [data-theme="light"] .cabinet-section-head input{color:#172641}[data-theme="light"] .cabinet-filters button.active,[data-theme="light"] .cabinet-filters button:hover{color:#172641;background:#f3e4c5;border-color:#aa6c20}
 [data-theme="light"] .currency-row b,[data-theme="light"] .artifact-grid h4,[data-theme="light"] .fragment-strip h3,[data-theme="light"] .next-achievement small,[data-theme="light"] .collection-progress b{color:#925b16}
 [data-theme="light"] .cabinet-book-card>div>i{background:#e5dac5}[data-theme="light"] .collection-grid article.locked,[data-theme="light"] .cabinet-achievement-grid article.locked{background:#d9d2c5;color:#5d5d59}
+
+/* Сюжетные ассеты личного кабинета */
+.shard-art{display:block;background-image:url("../decor/reader-cabinet/shard-atlas.png");background-repeat:no-repeat;background-size:300% 200%;background-position:var(--atlas-x) var(--atlas-y)}
+.collector-atlas-art{display:block;background-image:url("../decor/reader-cabinet/collector-atlas.png");background-repeat:no-repeat;background-size:300% 200%;background-position:var(--atlas-x) var(--atlas-y)}
+.achievement-atlas-icon{display:block;background-image:url("../decor/reader-cabinet/achievement-atlas.png");background-repeat:no-repeat;background-size:400% 200%;background-position:var(--atlas-x) var(--atlas-y)}
+.cabinet-goal .paper-fragment.shard-art{background-color:#071321;color:transparent}
+.fragment-piece{width:132px;height:132px;clip-path:none;background:transparent;filter:none}
+.fragment-piece>.shard-art{position:absolute;inset:0;filter:drop-shadow(0 0 10px rgba(255,183,70,.82));transition:filter .25s ease,opacity .25s ease}
+.fragment-piece>svg{position:relative;z-index:2;padding:7px;border:1px solid rgba(211,158,75,.65);border-radius:50%;background:rgba(2,10,19,.82);color:#d6b474}
+.fragment-piece.locked{background:transparent;filter:none}
+.fragment-piece.locked>.shard-art{opacity:.2;filter:grayscale(1) brightness(.55)}
+.fragment-piece small{z-index:3;bottom:-9px;padding:2px 8px;border:1px solid rgba(170,112,39,.62);background:#061426;color:#e2bd78;font-size:11px;white-space:nowrap}
+.mini-artifacts .collector-atlas-art{width:100%;aspect-ratio:1;border:1px solid #9f6a29;background-color:#061426}
+.fragment-strip i{position:relative;width:78px;height:78px;clip-path:none;background:transparent}
+.fragment-strip i>.shard-art{position:absolute;inset:0;filter:drop-shadow(0 0 7px rgba(244,174,65,.7))}
+.fragment-strip i>svg{position:relative;z-index:2;padding:4px;border-radius:50%;background:rgba(2,10,19,.86)}
+.fragment-strip i.locked{background:transparent}
+.fragment-strip i.locked>.shard-art{opacity:.18;filter:grayscale(1) brightness(.5)}
+.artifact-grid .collector-atlas-art{width:100%;aspect-ratio:1.12/1;border:1px solid #895c27;background-color:#03101f}
+
+/* Достижения — точная медальная композиция */
+.next-achievement>.achievement-atlas-icon{width:112px;height:112px;border:0;border-radius:0;background-color:#03101f;box-shadow:none}
+.cabinet-achievement-grid article>i.achievement-atlas-icon{width:134px;height:134px;border:0;border-radius:0;background-color:#03101f;box-shadow:0 0 28px rgba(219,154,55,.08)}
+.cabinet-achievement-grid{gap:13px}
+.cabinet-achievement-grid article{min-height:290px;padding:15px 12px;background:radial-gradient(circle at 50% 38%,rgba(30,70,108,.22),transparent 49%),linear-gradient(165deg,#07172a,#020a15)}
+.cabinet-achievement-grid article:before,.collector-card-face:before,.collector-locked-card:before{content:"";position:absolute;inset:5px;pointer-events:none;border:1px solid rgba(209,149,56,.16);clip-path:polygon(0 0,28px 0,28px 1px,1px 1px,1px 28px,0 28px,0 0,100% 0,100% 28px,calc(100% - 1px) 28px,calc(100% - 1px) 1px,calc(100% - 28px) 1px,calc(100% - 28px) 0,100% 0,100% 100%,calc(100% - 28px) 100%,calc(100% - 28px) calc(100% - 1px),calc(100% - 1px) calc(100% - 1px),calc(100% - 1px) calc(100% - 28px),100% calc(100% - 28px),100% 100%,0 100%,0 calc(100% - 28px),1px calc(100% - 28px),1px calc(100% - 1px),28px calc(100% - 1px),28px 100%,0 100%)}
+.cabinet-achievement-grid h4{font-size:20px}.cabinet-achievement-grid p{max-width:170px;font-size:14px;line-height:1.35}
+.cabinet-achievement-grid article.locked>.achievement-atlas-icon{opacity:.74}.cabinet-achievement-grid article.locked{filter:none;opacity:.55}
+
+/* Коллекционер */
+.cabinet-collector{padding:7px 12px 18px}.cabinet-collector .cabinet-section-head{align-items:center;padding:5px 372px 14px 0}.cabinet-collector .cabinet-section-head h2{font-size:46px}.cabinet-collector .cabinet-section-head label{width:330px}
+.collector-toolbar{display:flex;align-items:center;justify-content:center;min-height:76px;border-block:1px solid rgba(193,133,44,.24)}
+.collector-toolbar .cabinet-filters{margin:0;justify-content:center;flex-wrap:wrap}
+.collection-progress{top:6px;right:0;width:350px;min-height:102px;display:grid;grid-template-columns:1fr 70px;align-items:center;padding:13px 18px;background:radial-gradient(circle at 80% 50%,rgba(40,102,151,.2),transparent 42%),linear-gradient(145deg,#071a2f,#020c18)}
+.collection-progress span,.collection-progress b,.collection-progress>i{grid-column:1}.collection-progress span{font-size:15px}.collection-progress b{font-size:25px}.collection-progress>i{width:190px}.collection-progress>div{grid-column:2;grid-row:1/4;width:54px;height:66px;display:grid;place-items:center;border:1px solid #93652e;transform:rotate(7deg);background:radial-gradient(circle,#1b4166,#061426);color:#dda74a;font-size:24px;box-shadow:0 8px 18px rgba(0,0,0,.3)}
+.collection-grid{grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;padding:20px 0 12px;perspective:1400px}
+.collector-flip-card{min-width:0;min-height:385px;padding:0;border:0;background:transparent;cursor:pointer;perspective:1200px;color:inherit}
+.collector-card-inner{position:relative;width:100%;height:100%;display:block;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.2,.72,.22,1)}.collector-flip-card.is-flipped .collector-card-inner{transform:rotateY(180deg)}
+.collector-card-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;overflow:hidden;padding:8px;border:1px solid #9f6b2c;background:radial-gradient(circle at 50% 25%,rgba(28,72,111,.28),transparent 46%),linear-gradient(165deg,#07182c,#020a15);backface-visibility:hidden;box-shadow:inset 0 0 0 3px #020a14,0 10px 24px rgba(0,0,0,.32)}
+.collector-card-front .collector-atlas-art{width:100%;aspect-ratio:1;border:1px solid rgba(193,135,49,.75);background-color:#041223;box-shadow:inset 0 0 25px rgba(0,0,0,.28)}
+.collector-card-front>strong{min-height:48px;display:flex;align-items:center;justify-content:center;margin:8px 3px 0;color:#ead7b4;font:600 20px/1.05 "Cormorant Garamond",serif;text-align:center}
+.collector-card-front>small{color:#cda05b;font:14px "Cormorant Garamond",serif}.collector-card-front>.rarity-редкая{color:#5cc6ed}.collector-card-front>.rarity-легендарная{color:#f0ae37;text-shadow:0 0 12px rgba(238,159,41,.38)}
+.collector-card-front>em{margin-top:auto;color:#666e72;font:italic 10px "Cormorant Garamond",serif}
+.collector-card-back{justify-content:center;padding:22px;transform:rotateY(180deg);background:radial-gradient(circle at 50% 38%,rgba(38,104,147,.32),transparent 48%),linear-gradient(145deg,#09203a,#020b17);text-align:center}
+.collector-card-back>i{width:72px;height:72px;display:grid;place-items:center;border:1px solid #b47a30;border-radius:50%;color:#e7b158;font-size:27px;box-shadow:0 0 25px rgba(224,164,71,.15)}.collector-card-back>strong{margin:20px 0 8px;color:#efdab8;font:600 25px "Cormorant Garamond",serif}.collector-card-back>p{margin:0;color:#aeb8b5;font:italic 15px/1.45 "Cormorant Garamond",serif}.collector-card-back>small{margin-top:18px;color:#52bcd2;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+.collector-flip-card:hover .collector-card-face,.collector-flip-card:focus-visible .collector-card-face{border-color:#e0a84d;box-shadow:inset 0 0 0 3px #020a14,0 0 24px rgba(213,151,53,.18)}
+.collector-locked-card{position:relative;min-height:385px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(144,107,63,.42);background:radial-gradient(circle at 50% 42%,rgba(40,55,73,.22),transparent 45%),linear-gradient(165deg,#071321,#020812);color:#6f7378;opacity:.7;text-align:center}.collector-locked-card>svg{padding:12px;border:1px solid #685a49;border-radius:50%;box-sizing:content-box}.collector-locked-card h3{margin:17px 0 3px;color:#8d8a83;font:600 20px "Cormorant Garamond",serif}.collector-locked-card p{margin:0;color:#62666b;font:13px "Cormorant Garamond",serif}
+.collector-empty{padding:50px;text-align:center;color:#8f9997;font:italic 18px "Cormorant Garamond",serif}.collector-ornament{display:flex;align-items:center;gap:18px;color:#d59a3e}.collector-ornament:before,.collector-ornament:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#9b692e)}.collector-ornament:after{background:linear-gradient(90deg,#9b692e,transparent)}
+
+[data-theme="light"] .shard-art{filter:drop-shadow(0 0 6px rgba(161,95,17,.28))}[data-theme="light"] .fragment-piece small{background:#f7edda;color:#6d4315}
+[data-theme="light"] .cabinet-achievement-grid article,[data-theme="light"] .collector-card-face,[data-theme="light"] .collector-locked-card{background:radial-gradient(circle at 50% 30%,rgba(95,151,188,.12),transparent 46%),linear-gradient(165deg,#fffdf7,#e9deca);color:#26354d}
+[data-theme="light"] .cabinet-achievement-grid article>i.achievement-atlas-icon,[data-theme="light"] .next-achievement>.achievement-atlas-icon,[data-theme="light"] .collector-atlas-art{background-color:#071321}
+[data-theme="light"] .collector-card-front>strong,[data-theme="light"] .collector-card-back>strong{color:#172641}[data-theme="light"] .collector-card-back>p{color:#59645f}[data-theme="light"] .collector-card-front>em{color:#6b6f6b}
+[data-theme="light"] .collection-progress{background:radial-gradient(circle at 80% 50%,rgba(80,143,177,.13),transparent 42%),linear-gradient(145deg,#fffdf7,#e9deca)}
+
+@media(max-width:1250px){.collection-grid{grid-template-columns:repeat(4,1fr)}.collector-flip-card,.collector-locked-card{min-height:410px}.cabinet-achievement-grid article>i.achievement-atlas-icon{width:120px;height:120px}}
+@media(max-width:820px){.cabinet-collector{padding-inline:0}.cabinet-collector .cabinet-section-head{padding-right:8px}.collector-toolbar{display:block;padding-block:10px}.collection-progress{position:relative;top:auto;right:auto;width:auto;margin:10px 8px}.collection-grid{grid-template-columns:repeat(2,1fr);padding-inline:8px}.collector-flip-card,.collector-locked-card{min-height:430px}.fragment-piece{width:112px;height:112px}}
+@media(max-width:480px){.collection-grid{grid-template-columns:1fr}.collector-flip-card,.collector-locked-card{min-height:520px}.collector-card-front .collector-atlas-art{aspect-ratio:1.18/1}.cabinet-achievement-grid article>i.achievement-atlas-icon{width:150px;height:150px}.fragment-piece{width:86px;height:86px}.fragment-piece small{font-size:9px}.fragment-strip i{flex:0 0 70px}}
