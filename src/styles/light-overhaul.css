@@ -1,0 +1,93 @@
+/* Сквозная светлая тема: единая бумажная палитра для всех миров EduStories. */
+[data-theme="light"]{
+  --light-paper:#f7f1e5;
+  --light-panel:#fffdf8;
+  --light-panel-2:#eee4d3;
+  --light-ink:#172744;
+  --light-muted:#5e6d69;
+  --light-gold:#a66a18;
+  --light-teal:#187f79;
+  color:var(--light-ink);
+}
+
+.standalone-theme-toggle{position:fixed;z-index:44;left:18px;bottom:18px;min-height:44px;display:flex;align-items:center;gap:9px;padding:0 15px;border:1px solid rgba(213,161,72,.62);border-radius:24px;background:linear-gradient(145deg,#0b2630,#06161e);color:#f2d694;cursor:pointer;box-shadow:0 12px 32px rgba(0,0,0,.32);backdrop-filter:blur(12px)}
+.standalone-theme-toggle:hover{transform:translateY(-1px);filter:brightness(1.08)}
+[data-theme="light"] .standalone-theme-toggle{background:rgba(255,252,244,.96);border-color:#b97a25;color:#77501b;box-shadow:0 10px 25px rgba(92,61,20,.16)}
+
+/* Академия, обучение и Цифирная палата. */
+[data-theme="light"] .learning-site,[data-theme="light"] .learning-dashboard,[data-theme="light"] .learning-world,[data-theme="light"] .chamber-page{
+  --academy-bg:#f4eee1;--academy-panel:#fffdf7;--academy-line:rgba(39,126,105,.28);--academy-gold:#9d6417;--academy-text:#172b3f;--academy-muted:#5d706a;
+  color:var(--academy-text);background:radial-gradient(circle at 22% 4%,rgba(55,157,124,.12),transparent 31%),radial-gradient(circle at 86% 18%,rgba(216,163,62,.11),transparent 28%),linear-gradient(145deg,#fbf8f1,#eee5d6 58%,#e6ddcd)
+}
+[data-theme="light"] .learning-site::before,[data-theme="light"] .learning-dashboard::before,[data-theme="light"] .learning-world::before,[data-theme="light"] .chamber-page::before{opacity:.1;background-image:radial-gradient(circle,rgba(44,126,102,.5) 0 1px,transparent 1.6px)}
+[data-theme="light"] .learning-header,[data-theme="light"] .academy-header,[data-theme="light"] .chamber-header,[data-theme="light"] .learning-dashboard>aside{background:rgba(255,252,244,.94);border-color:rgba(164,108,29,.32);box-shadow:0 8px 25px rgba(78,54,22,.08)}
+[data-theme="light"] .learning-brand,[data-theme="light"] .dashboard-brand,[data-theme="light"] .learning-header nav button,[data-theme="light"] .academy-header nav button{color:#243552}
+[data-theme="light"] .learning-brand small,[data-theme="light"] .dashboard-brand small,[data-theme="light"] .learning-eyebrow,[data-theme="light"] .section-title>span{color:#167e69}
+[data-theme="light"] .learning-header nav button:hover,[data-theme="light"] .learning-header nav button.active,[data-theme="light"] .academy-header nav button:hover,[data-theme="light"] .academy-header nav button.active{color:#945d12}
+[data-theme="light"] .learning-hero h1,[data-theme="light"] .learning-services>h2,[data-theme="light"] .learning-how>h2,[data-theme="light"] .dashboard-welcome h1,[data-theme="light"] .section-title h2,[data-theme="light"] .academy-hero-copy h1,[data-theme="light"] .academy-chamber h2,[data-theme="light"] .academy-master-cta h2,[data-theme="light"] .chamber-hero h1,[data-theme="light"] .chamber-form h2,[data-theme="light"] .chamber-result h2,[data-theme="light"] .chamber-empty h2{color:#172744}
+[data-theme="light"] .learning-hero-copy>p,[data-theme="light"] .learning-card-grid p,[data-theme="light"] .learning-how p,[data-theme="light"] .dashboard-welcome p,[data-theme="light"] .academy-hero-copy>p,[data-theme="light"] .academy-services p,[data-theme="light"] .academy-steps p,[data-theme="light"] .academy-chamber p,[data-theme="light"] .academy-chamber li,[data-theme="light"] .academy-guard p,[data-theme="light"] .academy-master-cta p,[data-theme="light"] .chamber-hero p{color:#5d6d68}
+[data-theme="light"] .quick-order,[data-theme="light"] .learning-card-grid article,[data-theme="light"] .learning-how article,[data-theme="light"] .learning-order-modal,[data-theme="light"] .dashboard-stats article,[data-theme="light"] .dashboard-contracts,[data-theme="light"] .dashboard-rail>article,[data-theme="light"] .academy-quick,[data-theme="light"] .academy-services article,[data-theme="light"] .academy-steps article,[data-theme="light"] .academy-guard article,[data-theme="light"] .academy-board article,[data-theme="light"] .academy-masters article,[data-theme="light"] .academy-testimonials blockquote,[data-theme="light"] .chamber-halls button,[data-theme="light"] .chamber-form,[data-theme="light"] .chamber-result,[data-theme="light"] .chamber-history article,[data-theme="light"] .chamber-history>div:last-child>p{background:linear-gradient(145deg,rgba(255,253,248,.98),rgba(237,228,211,.94));border-color:rgba(46,133,108,.25);box-shadow:0 10px 28px rgba(76,52,20,.07)}
+[data-theme="light"] .academy-chamber,[data-theme="light"] .academy-master-cta{background:radial-gradient(circle at 65% 38%,rgba(49,157,126,.11),transparent 27%),linear-gradient(130deg,#fffdf7,#e9dfcf);border-color:rgba(164,108,29,.42)}
+[data-theme="light"] .academy-hero-characters>div,[data-theme="light"] .son-hint,[data-theme="light"] .chamber-machine{background:rgba(255,252,243,.94);border-color:rgba(45,139,108,.29);box-shadow:0 12px 30px rgba(73,49,18,.1)}
+[data-theme="light"] .academy-quick h2,[data-theme="light"] .academy-quick>button b,[data-theme="light"] .learning-card-grid h3,[data-theme="light"] .learning-how h3,[data-theme="light"] .dashboard-alert h2,[data-theme="light"] .dashboard-contracts h2,[data-theme="light"] .dashboard-rail h2,[data-theme="light"] .academy-services h3,[data-theme="light"] .academy-steps h3,[data-theme="light"] .academy-guard h3,[data-theme="light"] .academy-masters h3,[data-theme="light"] .faq-layout article>button{color:#20314b}
+[data-theme="light"] .quick-order select,[data-theme="light"] .learning-order-modal input,[data-theme="light"] .learning-order-modal select,[data-theme="light"] .chamber-inputs input{background:#fffdf9;border-color:rgba(43,125,102,.35);color:#1b3041}
+[data-theme="light"] .chamber-formula{background:#f5ead4;color:#845512}
+[data-theme="light"] .dashboard-alert{background:linear-gradient(90deg,rgba(226,191,122,.35),rgba(244,238,225,.9));color:#24344d}
+[data-theme="light"] .learning-dashboard>aside nav button,[data-theme="light"] .dashboard-side-bottom button{color:#356a5c}
+[data-theme="light"] .learning-dashboard>aside nav button.active,[data-theme="light"] .learning-dashboard>aside nav button:hover{color:#8b5914;background:linear-gradient(90deg,rgba(201,143,44,.14),transparent)}
+
+/* Единая авторизация двух миров. */
+[data-theme="light"] .auth-page.auth-worlds{color:#1a2c48;background:#eee5d6}
+[data-theme="light"] .auth-worlds-art{filter:saturate(.92) contrast(1.01)}
+[data-theme="light"] .auth-worlds-shade{background:linear-gradient(90deg,rgba(244,238,224,.08),rgba(255,252,244,.04) 38%,rgba(255,252,244,.03) 62%,rgba(226,238,240,.08)),linear-gradient(180deg,rgba(255,251,242,.22),transparent 20%,transparent 80%,rgba(225,216,200,.52))}
+[data-theme="light"] .auth-worlds-header{background:rgba(255,252,245,.76);border-color:rgba(165,109,28,.3)}
+[data-theme="light"] .auth-worlds-header strong{color:#172744;text-shadow:none}
+[data-theme="light"] .auth-world-copy{padding:24px;border-radius:12px;background:rgba(255,252,244,.78);text-shadow:none;box-shadow:0 12px 34px rgba(72,49,20,.09);backdrop-filter:blur(8px)}
+[data-theme="light"] .auth-world-copy h1{color:#172744}[data-theme="light"] .auth-world-copy p{color:#50625f}
+[data-theme="light"] .auth-page.auth-worlds .auth-unified-card{background:radial-gradient(circle at 50% 0,rgba(79,165,155,.13),transparent 40%),linear-gradient(155deg,rgba(255,253,248,.98),rgba(232,224,210,.98));border-color:#ae711f;box-shadow:0 25px 70px rgba(79,54,21,.2),inset 0 0 0 4px rgba(175,113,31,.035)}
+[data-theme="light"] .auth-page .auth-seal{background:#fffaf0;color:#8e5c16}
+[data-theme="light"] .auth-card h2,[data-theme="light"] .auth-card label>span:first-child{color:#1d2d48}
+[data-theme="light"] .auth-page.auth-worlds .auth-card>p:not(.auth-kicker),[data-theme="light"] .auth-page.auth-worlds .auth-note{color:#5d6865}
+[data-theme="light"] .auth-tabs{background:#efe7d8;border-color:#b37724}[data-theme="light"] .auth-tabs button{color:#40504f}[data-theme="light"] .auth-tabs button.active{color:#fff9e9;background:linear-gradient(135deg,#b27b31,#865418)}
+[data-theme="light"] .auth-card input{background:#fffdf9;color:#172744;border-color:#ad7529}
+[data-theme="light"] .auth-close{background:#fffaf0;color:#805318;border-color:#b97c29}
+[data-theme="light"] .auth-worlds-footer{color:#865817;text-shadow:none}
+
+/* Поддержка и настройки профиля. */
+[data-theme="light"] .support-panel,[data-theme="light"] .profile-settings{color:#21314a;background:radial-gradient(circle at 75% 4%,rgba(70,160,149,.12),transparent 34%),linear-gradient(150deg,#fffdf8,#eee4d3);border-color:#b77b27;box-shadow:0 24px 70px rgba(70,48,20,.2)}
+[data-theme="light"] .support-panel>header{background:linear-gradient(100deg,rgba(133,94,172,.1),rgba(255,255,255,.35));border-color:rgba(167,111,30,.22)}
+[data-theme="light"] .support-panel>header b,[data-theme="light"] .support-new h3,[data-theme="light"] .support-thread-title h3,[data-theme="light"] .profile-settings h2,[data-theme="light"] .profile-password h3{color:#1b2b48}
+[data-theme="light"] .support-chat-list>button,[data-theme="light"] .support-message p,[data-theme="light"] .profile-avatar-editor{color:#334744}
+[data-theme="light"] .support-chat-list>button:hover{background:rgba(35,132,112,.08)}
+[data-theme="light"] .support-new input,[data-theme="light"] .support-new textarea,[data-theme="light"] .support-reply textarea,[data-theme="light"] .profile-settings input{background:#fffdf9;color:#1a2b45;border-color:rgba(158,102,25,.33)}
+[data-theme="light"] .support-message{background:#e1e8e2}[data-theme="light"] .support-message.user{background:#d7ebe4}[data-theme="light"] .support-message.admin{background:#e8def0;border-color:rgba(112,70,151,.22)}
+[data-theme="light"] .profile-settings-backdrop{background:rgba(73,61,45,.5)}
+[data-theme="light"] .profile-avatar-editor{background:rgba(255,255,255,.48);border-color:rgba(167,111,30,.2)}
+
+/* Панель администратора. */
+[data-theme="light"] .admin-page{color:#1d2d45;background:radial-gradient(circle at 50% 5%,rgba(72,145,154,.12),transparent 35%),linear-gradient(155deg,#faf7f0,#e9e2d6)}
+[data-theme="light"] .admin-header,[data-theme="light"] .admin-users,[data-theme="light"] .admin-support-section{background:rgba(255,252,245,.92);border-color:rgba(164,108,29,.3)}
+[data-theme="light"] .admin-brand b,[data-theme="light"] .admin-title h1,[data-theme="light"] .admin-users-head h2,[data-theme="light"] .admin-support-head h2{color:#1b2b47}
+[data-theme="light"] .admin-stat-grid article{background:linear-gradient(145deg,#fffdf8,#ebe3d5);border-color:rgba(164,108,29,.25)}
+[data-theme="light"] .admin-stat-grid b,[data-theme="light"] .admin-users td:first-child b{color:#24334b}
+[data-theme="light"] .admin-users th{background:#eee6d8;color:#596965}[data-theme="light"] .admin-users td{color:#46534f;border-color:rgba(164,108,29,.11)}
+[data-theme="light"] .admin-users-head label{background:#fffdf8}[data-theme="light"] .admin-users-head input{color:#1b2b45}
+
+/* Дневные персонажи и сцены: убираем ночные затемнения поверх новых ассетов. */
+[data-theme="light"] .notary-portrait::after,[data-theme="light"] .flyagius-portrait::after{background:linear-gradient(to top,rgba(245,237,220,.5),transparent 34%)}
+[data-theme="light"] .notary-copy,[data-theme="light"] .flyagius-copy{background:rgba(255,252,244,.88);color:#26364b;box-shadow:0 10px 28px rgba(68,45,17,.1)}
+
+/* Все варианты подвала получают собственный светлый тон. */
+[data-theme="light"] .site-footer-portal,[data-theme="light"] .site-footer-academy,[data-theme="light"] .site-footer-admin,[data-theme="light"] .site-footer-auth{color:#263c3a;border-color:#bb812c;background:radial-gradient(circle at 18% 25%,rgba(43,144,109,.1),transparent 31%),radial-gradient(circle at 82% 25%,rgba(62,111,177,.1),transparent 31%),linear-gradient(145deg,#fffdf8,#e9e1d4)}
+[data-theme="light"] .site-footer-academy{background:radial-gradient(circle at 12% 28%,rgba(42,145,103,.12),transparent 32%),linear-gradient(145deg,#fbfaf4,#e4eadc)}
+[data-theme="light"] .site-footer-admin{background:radial-gradient(circle at 12% 28%,rgba(81,105,141,.1),transparent 32%),linear-gradient(145deg,#faf9f6,#e2e4e6)}
+[data-theme="light"] .site-footer-auth{background:linear-gradient(90deg,#e8eee2,#f7f1e5 50%,#e2eaf1)}
+[data-theme="light"] .site-footer .footer-brand{color:#182b4a}
+[data-theme="light"] .site-footer .footer-about>p,[data-theme="light"] .site-footer .footer-column button,[data-theme="light"] .site-footer .footer-column a,[data-theme="light"] .site-footer .footer-column>span{color:#566965}
+[data-theme="light"] .site-footer .site-footer-bottom{background:rgba(218,208,191,.46);color:#686b65}
+[data-theme="light"] .site-footer .site-footer-bottom button{color:#686b65}
+
+@media(max-width:820px){
+  [data-theme="light"] .learning-header nav,[data-theme="light"] .academy-header nav{background:#fffaf0;border-color:#a66d1d}
+  .standalone-theme-toggle span{display:none}.standalone-theme-toggle{width:46px;padding:0;justify-content:center}
+}

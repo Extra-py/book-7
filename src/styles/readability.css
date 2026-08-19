@@ -1,0 +1,24 @@
+/* Единый нижний порог для служебного текста: важен на телефонах и в светлой теме. */
+.app-shell{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+.app-shell :where(p,blockquote,li,dd){text-wrap:pretty}
+.app-shell :where(button,a,input,textarea,select){line-height:1.35}
+.app-shell button{font-size:max(11.5px,.75rem)!important}
+.app-shell small{font-size:max(10.5px,.7rem)!important;line-height:1.4}
+.app-shell :where(input,textarea,select){font-size:max(13px,.82rem)!important}
+.app-shell :where(.nav-link,.guest-auth-actions button,.primary-button,.guide-button){font-size:max(12px,.76rem)}
+.app-shell :where(.eyebrow,.quest-chapter,.alchemy-overline,.alchemy-section-heading span){font-size:max(10.5px,.7rem)}
+.app-shell :where(.task-answer-card>p,.location-brief,.chat-message,.reader-book-copy>p,.map-history-card p,.achievement-card p,.guild-description>p,.guild-description article span,.tavern-message p){font-size:max(13px,.82rem);line-height:1.55}
+.app-shell :where(.reader-stats span,.progress-block,.rank-mini,.leaders span,.guild-genres,.guild-capacity>span,.riddle-form>label,.riddle-actions button){font-size:max(11px,.72rem)}
+.app-shell :where(.auth-note,.admin-title>div>span,.admin-users th,.admin-users td,.creature-copy>span,.creature-tags b,.entry-classification b,.creature-rarity,.creature-familiarity span,.entry-trait>span,.entry-columns ul,.entry-footer span,.collector-summary span,.collectible-front>em,.collectible-back>small,.guild-reader-state span,.special-ribbon,.guild-dialog-head span,.guild-description article b,.guild-dialog-footer>span,.guild-guide-grid p,.guild-structure span,.assignment-heading p,.task-answer-card>span i,.xi-chat-head span,.xi-chat-head small,.chosen-class,.profile-settings-kicker,.profile-settings-grid label>span,.profile-password label>span,.reader-identity>p,.reader-xp-line b,.achievement-card>span,.trail-toolbar span,.map-history-top span,.map-history-card>b,.support-actions>span,.support-chat-list time,.support-message b,.support-message time,.tavern-title>span,.glossa-portrait>span,.glossa-stats span,.riddle-head span,.riddle-head>b,.tavern-message.glossa>span,.welcome-copy>span,.map-swipe-hint){font-size:max(10.5px,.7rem)!important;line-height:1.4}
+.app-shell :where(.reader-dropdown b,.node-copy b,.assignment-heading h2,.trail-section-title h2){text-wrap:balance}
+
+[data-theme="dark"] :where(.location-brief,.task-answer-card>p,.trail-hero>p,.reader-identity>p,.trail-section-title p,.reader-book-copy>p,.map-history-card p,.achievement-card p,.guild-description>p,.alchemy-hero-copy>p,.alchemy-section-heading>p,.alchemy-weekly>p){color:#b6c4c5}
+[data-theme="light"] :where(.location-brief,.task-answer-card>p,.trail-hero>p,.reader-identity>p,.trail-section-title p,.reader-book-copy>p,.map-history-card p,.achievement-card p,.guild-description>p,.alchemy-hero-copy>p,.alchemy-section-heading>p,.alchemy-weekly>p){color:#4c5960}
+[data-theme="light"] :where(input,textarea,select)::placeholder{color:#777f82;opacity:1}
+[data-theme="light"] :where(.reader-dropdown small,.profile-chip span,.progress-block,.rank-mini,.leaders span){color:#59635d}
+
+@media(max-width:640px){
+  .app-shell{font-size:15px}
+  .app-shell small{font-size:max(10px,.68rem)!important}
+  .app-shell :where(button,a,input,textarea,select){touch-action:manipulation}
+}

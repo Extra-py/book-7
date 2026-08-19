@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.pnpm-store/
+.tmp/
+tmp/
+*.log
+*.zip
+reader-diary-import/
