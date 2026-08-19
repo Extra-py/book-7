@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ArrowRight, Bell, BookOpen, Calculator, CheckCircle2, Clock3, Code2, Compass, FileText, FlaskConical, GraduationCap, Menu, Presentation, ScrollText, ShieldCheck, Sigma, Sparkles, Star, Users, WandSparkles, X, Zap } from "lucide-react";
+import { ArrowRight, Bell, BookOpen, Calculator, CheckCircle2, Clock3, Code2, Compass, FileText, FlaskConical, GraduationCap, Menu, Moon, Presentation, ScrollText, ShieldCheck, Sigma, Sparkles, Star, Sun, Users, WandSparkles, X, Zap } from "lucide-react";
 import LearningOrderModal from "./LearningOrderModal";
 import { LearningOrder, loadLearningOrders, saveLearningOrders } from "./learning";
 
 const BASE = import.meta.env.BASE_URL;
-type Props = { isAuthenticated:boolean; username?:string; displayName?:string; onOpenPortal:()=>void; onOpenLibrary:()=>void; onOpenDashboard:()=>void; onOpenCalculator:()=>void; onRequireAuth:()=>void };
+type Props = { isAuthenticated:boolean; username?:string; displayName?:string; theme:"light"|"dark"; onToggleTheme:()=>void; onOpenPortal:()=>void; onOpenLibrary:()=>void; onOpenDashboard:()=>void; onOpenCalculator:()=>void; onRequireAuth:()=>void };
 
 const services = [
   [ScrollText,"Учебные работы","Курсовые, отчёты и исследования с понятной структурой."],
@@ -36,6 +36,9 @@ export default function LearningHome(props: Props) {
         <button onClick={()=>document.getElementById("learning-how")?.scrollIntoView({behavior:"smooth"})}>Как это работает</button>
         <button onClick={props.onOpenLibrary}>Библиотека</button>
       </nav>
+      <button className="theme-toggle section-theme-toggle" onClick={props.onToggleTheme} aria-label={props.theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}>
+        <span className={props.theme === "light" ? "active" : ""}><Sun size={16}/></span><span className={props.theme === "dark" ? "active" : ""}><Moon size={16}/></span>
+      </button>
       <button className="academy-notice" aria-label="Вестник"><Bell size={18}/></button>
       <button className="learning-gold-button learning-create-top" onClick={openOrder}>Создать поручение</button>
       <button className="learning-menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Меню">{menuOpen?<X/>:<Menu/>}</button>
@@ -43,8 +46,8 @@ export default function LearningHome(props: Props) {
 
     <main>
       <section className="academy-hero">
-        <div className="academy-hero-copy"><span className="learning-eyebrow"><Sparkles size={14}/> Доска поручений</span><h1>Задание найдёт<br/><em>своего мастера</em></h1><p>Принеси свиток в Училище. Проверенные Мастера предложат решение, объяснят сложное и помогут получить новые знания.</p><div className="learning-hero-actions"><button className="learning-gold-button" onClick={openOrder}>Создать поручение <ArrowRight size={18}/></button><button onClick={()=>document.getElementById("learning-masters")?.scrollIntoView({behavior:"smooth"})}><Users size={18}/> Найти Мастера</button></div><div className="academy-stats"><span><b>2 400</b> мастеров</span><span><b>18 000</b> поручений</span><span><b>4,9 ★</b> средняя Слава</span></div></div>
-        <div className="academy-hero-characters"><img className="academy-son" src={`${BASE}learning/characters/son-hero.webp`} alt="Исследователь Сон с компасом знаний"/><img className="academy-zurk" src={`${BASE}learning/characters/zurk-guide.webp`} alt="Профессор Зурк со свитком"/><div><b>Профессор Зурк покажет дорогу</b><span>Я слышу твои вопросы. Начнём с описания задачи?</span></div></div>
+        <div className="academy-hero-copy"><span className="learning-eyebrow"><Sparkles size={14}/> Доска поручений</span><h1>Задание найдёт<br/><em>своего мастера</em></h1><p>Принеси свиток в Училище. Проверенные Мастера предложат решение, объяснят сложное и помогут получить новые знания.</p><div className="academy-zurk-dialog"><b>Профессор Зурк покажет дорогу</b><span>Я слышу твои вопросы. Начнём с описания задачи?</span></div><div className="learning-hero-actions"><button className="learning-gold-button" onClick={openOrder}>Создать поручение <ArrowRight size={18}/></button><button onClick={()=>document.getElementById("learning-masters")?.scrollIntoView({behavior:"smooth"})}><Users size={18}/> Найти Мастера</button></div><div className="academy-stats"><span><b>2 400</b> мастеров</span><span><b>18 000</b> поручений</span><span><b>4,9 ★</b> средняя Слава</span></div></div>
+        <div className="academy-hero-characters"><img className="academy-son" src={`${BASE}learning/characters/son-hero.webp`} alt="Исследователь Сон с компасом знаний"/><img className="academy-zurk" src={`${BASE}learning/characters/zurk-guide.webp`} alt="Профессор Зурк со свитком"/></div>
         <aside className="academy-quick"><span className="learning-eyebrow"><ScrollText size={14}/> Быстрый старт</span><h2>Какой свиток принесёшь?</h2><button onClick={openOrder}><FileText/><span><b>Учебная работа</b><small>Курсовая, отчёт, исследование</small></span><ArrowRight/></button><button onClick={openOrder}><Code2/><span><b>Задача по программированию</b><small>Код, алгоритм, лабораторная</small></span><ArrowRight/></button><button onClick={props.onOpenCalculator}><Calculator/><span><b>Нужен расчёт</b><small>Открыть бесплатную Цифирную палату</small></span><ArrowRight/></button><small><ShieldCheck size={14}/> Оберег сделки защищает оплату</small></aside>
       </section>
 

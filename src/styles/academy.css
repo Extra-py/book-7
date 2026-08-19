@@ -16,3 +16,11 @@
 .academy-hero-characters .academy-son{left:9%;right:auto;bottom:0;width:auto;height:94%;max-width:74%;object-fit:contain;object-position:bottom}.academy-hero-characters .academy-zurk{left:auto;right:0;bottom:3%;width:37%;height:auto;max-width:none}
 .academy-hero-characters>div{right:-1%;bottom:47%}
 @media(max-width:540px){.academy-hero-characters .academy-son{left:0;max-width:76%}.academy-hero-characters .academy-zurk{width:40%}.academy-hero-characters>div{right:0;bottom:45%}}
+
+/* Общая геометрия шапок зелёного мира. */
+.academy-header .section-theme-toggle{margin-left:auto}.chamber-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:18px}.chamber-header-actions>span{display:flex;align-items:center;gap:7px;color:#8fc4a7;font-size:12px}.dashboard-welcome-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px}
+/* Реплика Зурка — отдельный элемент текста и никогда не закрывает персонажей. */
+.academy-zurk-dialog{max-width:470px;margin-top:20px;padding:14px 17px;border:1px solid rgba(231,180,75,.5);border-left:4px solid #d9a640;border-radius:7px;background:rgba(3,24,19,.86);box-shadow:0 12px 28px rgba(0,0,0,.2)}.academy-zurk-dialog b,.academy-zurk-dialog span{display:block}.academy-zurk-dialog b{color:#efc878;font:600 18px "Cormorant Garamond",serif}.academy-zurk-dialog span{margin-top:4px;color:#a4baac;font-size:11px;line-height:1.45}
+@media(max-width:1180px){.academy-header .section-theme-toggle{margin-left:0}.chamber-header-actions>span{display:none}}
+@media(max-width:820px){.academy-header .section-theme-toggle{margin-left:auto}.academy-header .learning-menu-button{margin-left:0}.chamber-header{gap:10px}.chamber-header-actions{margin-left:auto}.dashboard-welcome-actions{width:100%;justify-content:space-between}.dashboard-welcome-actions .learning-gold-button{flex:1}}
+@media(max-width:540px){.academy-zurk-dialog{padding:11px 13px}.academy-zurk-dialog b{font-size:16px}.academy-zurk-dialog span{font-size:10px}.chamber-header .learning-brand span{display:none}.chamber-back{margin-left:auto}.dashboard-welcome-actions{align-items:stretch}}

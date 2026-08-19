@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowLeft, BookOpen, Calculator, CheckCircle2, Clock3, Cog, FlaskConical, GraduationCap, Save, ScrollText, Sigma, Sparkles, WandSparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Calculator, CheckCircle2, Clock3, Cog, FlaskConical, GraduationCap, Moon, Save, ScrollText, Sigma, Sparkles, Sun, WandSparkles } from "lucide-react";
 import LearningOrderModal from "./LearningOrderModal";
 import { LearningOrder, loadLearningOrders, saveLearningOrders } from "./learning";
 
@@ -14,7 +14,7 @@ const halls = [
   { id: "student" as Hall, title: "Студенческий быт", copy: "Дедлайны, объём работ и стоимость", icon: GraduationCap },
 ];
 
-export default function DigitalChamber({ isAuthenticated, username, onBack, onRequireAuth, onOpenDashboard }: { isAuthenticated: boolean; username?: string; onBack: () => void; onRequireAuth: () => void; onOpenDashboard: () => void }) {
+export default function DigitalChamber({ isAuthenticated, username, theme, onToggleTheme, onBack, onRequireAuth, onOpenDashboard }: { isAuthenticated: boolean; username?: string; theme:"light"|"dark"; onToggleTheme:()=>void; onBack: () => void; onRequireAuth: () => void; onOpenDashboard: () => void }) {
   const [hall, setHall] = useState<Hall>("math");
   const [values, setValues] = useState({ a: "1", b: "-5", c: "6", speed: "72", deadline: "", pages: "30" });
   const [result, setResult] = useState<Result | null>(null);
@@ -67,7 +67,7 @@ export default function DigitalChamber({ isAuthenticated, username, onBack, onRe
     <header className="chamber-header">
       <button className="learning-brand" onClick={onBack}><img src={`${BASE}brand/edustories-logo.webp`} alt="" /><span><b>EduStories</b><small>Цифирная палата</small></span></button>
       <button className="chamber-back" onClick={onBack}><ArrowLeft size={17} /> К Доске поручений</button>
-      <span><Sparkles size={15} /> Бесплатно для всех Искателей</span>
+      <div className="chamber-header-actions"><span><Sparkles size={15} /> Бесплатно для всех Искателей</span><button className="theme-toggle section-theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}><span className={theme === "light" ? "active" : ""}><Sun size={16}/></span><span className={theme === "dark" ? "active" : ""}><Moon size={16}/></span></button></div>
     </header>
     <section className="chamber-hero">
       <div><span className="learning-eyebrow"><Calculator size={15} /> Счётная машина Сона</span><h1>Цифирная палата</h1><p>Выберите готовый рецепт, получите не только ответ, но и полный ход решения. Точность — вежливость чародеев.</p><div className="chamber-badges"><span>Гостю — 5 расчётов</span><span>Пошаговое решение</span><span>Автосохранение</span></div></div>

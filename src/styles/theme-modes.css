@@ -10,6 +10,13 @@
 @media(max-width:1180px){.main-nav>.nav-link{display:none}.topbar .main-nav{margin-left:auto}.theme-toggle{width:86px}.theme-toggle>small{display:none}}
 @media(max-width:980px){.theme-toggle{width:78px}.map-viewport{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#bd8734 transparent}.map-layout .art-map{width:980px;height:440px;min-height:440px;background-size:auto 166%}.map-swipe-hint{display:flex}.art-map .map-node{width:64px;height:64px}.art-map .node-ring{width:64px;height:64px}}
 @media(max-width:640px){.theme-toggle{width:66px;height:36px}.theme-toggle>span{width:27px;height:27px}.topbar .profile-chip{min-width:36px}.level-badge{width:32px;height:32px}.map-layout{padding-inline:12px}.map-heading{gap:8px}.map-heading h1{font-size:38px}.map-heading p{max-width:230px}.map-viewport{margin-inline:0}.map-layout .art-map{width:900px;height:405px;min-height:405px}.art-map .map-node{width:58px;height:58px}.art-map .node-ring{width:58px;height:58px}}
+
+/* Единый компактный переключатель: всегда без подписи. */
+.theme-toggle{width:78px;min-width:78px;height:40px;padding:4px;flex:0 0 auto}
+.theme-toggle>small{display:none!important}
+.theme-toggle>span{width:31px;height:31px}
+.admin-theme-toggle{position:fixed;z-index:90;top:18px;right:18px}
+@media(max-width:640px){.theme-toggle{width:66px;min-width:66px;height:36px}.theme-toggle>span{width:27px;height:27px}.admin-theme-toggle{top:12px;right:12px}}
 [data-theme="light"] .guest-auth-actions button{border-color:#9d651d;background:#fff8e8;color:#70430f;font-weight:800;box-shadow:0 2px 9px rgba(94,57,12,.13)}[data-theme="light"] .guest-auth-actions button:last-child{background:linear-gradient(135deg,#b77928,#7d4d15);color:#fff8e8}
 
 /* Иллюстрированный атлас: фон и интерактивные центры используют одну систему координат. */

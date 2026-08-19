@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, BookOpen, CheckCircle2, Clock3, Coins, Home, LogOut, Menu, MessageCircle, Plus, ScrollText, Settings, Star, X } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Clock3, Coins, Home, LogOut, Menu, MessageCircle, Moon, Plus, ScrollText, Settings, Star, Sun, X } from "lucide-react";
 import LearningOrderModal from "./LearningOrderModal";
 import { LearningOrder, loadLearningOrders, saveLearningOrders } from "./learning";
 
 const BASE = import.meta.env.BASE_URL;
 type Filter = "active" | "review" | "done";
 
-export default function LearningDashboard({ username, displayName, onOpenHome, onOpenPortal, onOpenLibrary, onLogout }: { username: string; displayName: string; onOpenHome: () => void; onOpenPortal: () => void; onOpenLibrary: () => void; onLogout: () => void }) {
+export default function LearningDashboard({ username, displayName, theme, onToggleTheme, onOpenHome, onOpenPortal, onOpenLibrary, onLogout }: { username: string; displayName: string; theme:"light"|"dark"; onToggleTheme:()=>void; onOpenHome: () => void; onOpenPortal: () => void; onOpenLibrary: () => void; onLogout: () => void }) {
   const [orders, setOrders] = useState(() => loadLearningOrders(username));
   const [filter, setFilter] = useState<Filter>("active");
   const [orderOpen, setOrderOpen] = useState(false);
@@ -33,7 +33,7 @@ export default function LearningDashboard({ username, displayName, onOpenHome, o
       <button className="dashboard-menu" onClick={() => setMenuOpen(true)}><Menu /></button>
 
       <main>
-        <header className="dashboard-welcome"><div><span>Палаты Искателя</span><h1>С возвращением, {firstName}</h1><p>Свитки, отклики Мастеров и вести собраны в одном месте.</p></div><button className="learning-gold-button" onClick={() => setOrderOpen(true)}><Plus /> Создать поручение</button></header>
+        <header className="dashboard-welcome"><div><span>Палаты Искателя</span><h1>С возвращением, {firstName}</h1><p>Свитки, отклики Мастеров и вести собраны в одном месте.</p></div><div className="dashboard-welcome-actions"><button className="theme-toggle section-theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}><span className={theme === "light" ? "active" : ""}><Sun size={16}/></span><span className={theme === "dark" ? "active" : ""}><Moon size={16}/></span></button><button className="learning-gold-button" onClick={() => setOrderOpen(true)}><Plus /> Создать поручение</button></div></header>
         <section className="dashboard-alert"><ScrollText /><div><h2>Выберите мастера для учебной работы</h2><p>Получено 7 предложений · срок выбора сегодня</p></div><button>Сравнить предложения <ArrowRight /></button></section>
         <div className="dashboard-layout">
           <div>

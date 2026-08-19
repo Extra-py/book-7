@@ -496,8 +496,8 @@ function App() {
       <main className="app-shell" data-theme={theme}>
         <Suspense fallback={<PageLoader />}><AdminDashboard session={authSession} onLogout={logout} /></Suspense>
         <SiteFooter tone="admin" admin />
-        <button className="standalone-theme-toggle" onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")} aria-label="Переключить тему">
-          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}<span>{theme === "dark" ? "Светлая тема" : "Тёмная тема"}</span>
+        <button className="theme-toggle admin-theme-toggle" onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")} aria-label="Переключить тему">
+          <span className={theme === "light" ? "active" : ""}><Sun size={16} /></span><span className={theme === "dark" ? "active" : ""}><Moon size={16} /></span>
         </button>
       </main>
     );
@@ -554,7 +554,6 @@ function App() {
         >
           <span className={theme === "light" ? "active" : ""}><Sun size={16} /></span>
           <span className={theme === "dark" ? "active" : ""}><Moon size={16} /></span>
-          <small>{theme === "dark" ? "Тёмная тема" : "Светлая тема"}</small>
         </button>
         {authSession ? (
           <>
@@ -667,6 +666,8 @@ function App() {
             onOpenDashboard={openLearningDashboard}
             onOpenCalculator={() => navigate("calculator")}
             onRequireAuth={requireLearningAuth}
+            theme={theme}
+            onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")}
           />
         </Suspense>
       ) : page === "calculator" ? (
@@ -677,6 +678,8 @@ function App() {
             onBack={() => navigate("learning")}
             onRequireAuth={requireLearningAuth}
             onOpenDashboard={openLearningDashboard}
+            theme={theme}
+            onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")}
           />
         </Suspense>
       ) : page === "learning-dashboard" && authSession ? (
@@ -688,6 +691,8 @@ function App() {
             onOpenPortal={() => navigate("portal")}
             onOpenLibrary={() => navigate("home")}
             onLogout={logout}
+            theme={theme}
+            onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")}
           />
         </Suspense>
       ) : page === "home" ? (
@@ -921,11 +926,6 @@ function App() {
       <AnimatePresence>
         {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} />}
       </AnimatePresence>
-      {(["learning", "learning-dashboard", "calculator"] as SitePage[]).includes(page) && (
-        <button className="standalone-theme-toggle" onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")} aria-label="Переключить тему">
-          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}<span>{theme === "dark" ? "Светлая тема" : "Тёмная тема"}</span>
-        </button>
-      )}
       <SiteFooter
         tone={
           page === "portal" ? "portal" :

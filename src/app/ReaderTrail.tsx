@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { CSSProperties, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   Award,
@@ -139,6 +139,29 @@ const achievements = [
   { icon: Award, title: "Голос гильдии", text: "Завершите три задания вместе", earned: false },
 ];
 
+const mapRegions = [
+  { title: "Долина Первых Строк", short: "Долина", lore: "Здесь появилась первая строка твоего пути." },
+  { title: "Замок Спящего Дракона", short: "Замок", lore: "Смелость просыпается раньше древнего дракона." },
+  { title: "Лес Шёпота и Теней", short: "Лес", lore: "Внимательный читатель слышит даже тишину." },
+  { title: "Океан Нескончаемых Историй", short: "Океан", lore: "Каждая волна приносит новую историю." },
+  { title: "Город Живых Зеркал", short: "Город", lore: "Отражение хранит выбор, который ты сделал." },
+  { title: "Библиотека Вечности", short: "Библиотека", lore: "Все прочитанные пути встречаются здесь." },
+];
+
+const collectorCards = [
+  { name: "Анналия", category: "Персонажи", rarity: "Обычная", lore: "Она записывает события прежде, чем время успевает их забыть." },
+  { name: "Люминар", category: "Артефакты", rarity: "Редкая", lore: "Его свет загорается только рядом с правдивой историей." },
+  { name: "Инкогнита", category: "Персонажи", rarity: "Редкая", lore: "Никто не знает её имени, но каждая тайная дверь узнаёт её шаги." },
+  { name: "Нова", category: "Персонажи", rarity: "Обычная", lore: "Она собирает сломанные сюжеты так же ловко, как часовые механизмы." },
+  { name: "Кси", category: "Персонажи", rarity: "Легендарная", lore: "Голос Библиотеки остаётся рядом, пока ты продолжаешь читать." },
+  { name: "Великая Библиотека", category: "Места", rarity: "Легендарная", lore: "У неё нет последнего этажа — только следующая страница." },
+];
+
+const atlasCell = (index: number, columns: number) => ({
+  "--atlas-x": `${(index % columns) * (100 / Math.max(1, columns - 1))}%`,
+  "--atlas-y": `${Math.floor(index / columns) * 100}%`,
+} as CSSProperties);
+
 const mapHistory = [
   { name: "Карта историй", progress: 68, chapters: "4 из 6 точек", status: "В пути", image: "journey-1.webp" },
   { name: "Тёмный компендиум зимы", progress: 100, chapters: "12 из 12 книг", status: "Завершено", image: "journey-2.webp" },
@@ -187,8 +210,8 @@ export default function ReaderTrail({ xp, level, completedMaps, displayName, ses
       <div className="cabinet-content">
         {activeTab === "overview" && <OverviewTab xp={xp} completedMaps={completedMaps} onOpenMap={onOpenMap} onSelectBook={setSelectedBook} onOpenInventory={() => setActiveTab("inventory")} />}
         {activeTab === "library" && <LibraryTab books={visibleBooks} filter={bookFilter} search={search} setFilter={setBookFilter} setSearch={setSearch} onSelectBook={setSelectedBook} />}
-        {activeTab === "inventory" && <InventoryTab />}
-        {activeTab === "achievements" && <AchievementsTab />}
+        {activeTab === "inventory" && <InventoryTab completedMaps={completedMaps} />}
+        {activeTab === "achievements" && <AchievementsTab completedMaps={completedMaps} />}
         {activeTab === "collector" && <CollectorTab />}
       </div>
 
@@ -201,14 +224,16 @@ export default function ReaderTrail({ xp, level, completedMaps, displayName, ses
 }
 
 function OverviewTab({ xp, completedMaps, onOpenMap, onSelectBook, onOpenInventory }: { xp: number; completedMaps: number; onOpenMap: () => void; onSelectBook: (book: Book) => void; onOpenInventory: () => void }) {
+  const completedPoints = Math.min(mapRegions.length, Math.max(0, completedMaps));
+  const nextRegion = mapRegions[completedPoints];
   return (
     <div className="cabinet-overview">
       <aside className="cabinet-side-stack">
         <section className="cabinet-panel"><h2><BookOpen size={18} /> Сейчас читаю</h2>{books.slice(0,2).map((book,index)=><button className="now-reading" key={book.id} onClick={()=>onSelectBook(book)}><img src={`${import.meta.env.BASE_URL}books/${book.image}`} alt="" /><span><b>{book.title}</b><small>{book.author}</small><i><em style={{width:index ? "100%":"78%"}} /></i></span><strong>{index ? 100 : 78}%</strong></button>)}</section>
-        <section className="cabinet-panel cabinet-goal"><h2><Compass size={18} /> Ближайшая цель</h2><div className="paper-fragment">✦</div><p>Соберите ещё 1 осколок, чтобы восстановить страницу Великой Книги.</p><b>5 / 6</b><i><em style={{width:"83%"}} /></i></section>
+        <section className="cabinet-panel cabinet-goal"><h2><Compass size={18} /> Ближайшая цель</h2><div className={`paper-fragment shard-art shard-${Math.min(completedPoints, 5)}`} style={atlasCell(Math.min(completedPoints, 5), 3)} aria-hidden="true"/><p>{nextRegion ? `Пройдите «${nextRegion.title}», чтобы получить следующий осколок Великой Книги.` : "Все шесть сюжетных осколков собраны. Великая Книга восстановлена."}</p><b>{completedPoints} / 6</b><i><em style={{width:`${completedPoints / 6 * 100}%`}} /></i></section>
       </aside>
-      <section className="cabinet-panel great-book"><h2><span>✦</span> Восстановление Великой Книги <span>✦</span></h2><div className="fragment-map">{["Древо","Замок","Сова","Океан","Город","Башня"].map((item,index)=><div className={`fragment-piece ${index>=4?"locked":""}`} key={index}>{index>=4?<Lock size={23}/>:<><span>{index+1}</span><small>{item}</small></>}</div>)}</div><b>4 из 6 осколков</b><button onClick={onOpenMap}>Продолжить путь <ChevronRight size={17}/></button></section>
-      <aside className="cabinet-panel cabinet-inventory-mini"><h2><Package size={18}/> Инвентарь</h2><ul><li><Coins/>Золотые чернила <b>1 240</b></li><li><Gem/>Кристаллы памяти <b>86</b></li><li><Medallion/>Жетоны гильдии <b>315</b></li><li><Library/>Осколки книг <b>{completedMaps + 4} / 7</b></li></ul><div className="mini-artifacts">{[1,2,3].map(n=><img key={n} src={`${import.meta.env.BASE_URL}collector-cards/card-${n}.webp`} alt="Артефакт" />)}</div><button onClick={onOpenInventory}>Открыть инвентарь <ChevronRight size={16}/></button></aside>
+      <section className="cabinet-panel great-book"><h2><span>✦</span> Восстановление Великой Книги <span>✦</span></h2><div className="fragment-map">{mapRegions.map((region,index)=><div className={`fragment-piece ${index>=completedPoints?"locked":"unlocked"}`} key={region.title} title={region.title}><span className="shard-art" style={atlasCell(index,3)} />{index>=completedPoints&&<Lock size={23}/>}<small>{region.short}</small></div>)}</div><b>{completedPoints} из 6 осколков</b><button onClick={onOpenMap}>{completedPoints === 6 ? "Вернуться на карту" : "Продолжить путь"} <ChevronRight size={17}/></button></section>
+      <aside className="cabinet-panel cabinet-inventory-mini"><h2><Package size={18}/> Инвентарь</h2><ul><li><Coins/>Золотые чернила <b>1 240</b></li><li><Gem/>Кристаллы памяти <b>86</b></li><li><Medallion/>Жетоны гильдии <b>315</b></li><li><Library/>Осколки Великой Книги <b>{completedPoints} / 6</b></li></ul><div className="mini-artifacts">{collectorCards.slice(1,4).map((card,index)=><span className="collector-atlas-art" style={atlasCell(index+1,3)} key={card.name} role="img" aria-label={card.name}/>)}</div><button onClick={onOpenInventory}>Открыть инвентарь <ChevronRight size={16}/></button></aside>
       <section className="cabinet-panel overview-achievements"><h2><Trophy size={18}/> Достижения</h2>{achievements.slice(0,4).map(({icon:Icon,title,text,earned})=><article className={earned?"":"locked"} key={title}><i><Icon size={22}/></i><span><b>{title}</b><small>{text}</small></span>{earned?<Check size={14}/>:<Lock size={14}/>}</article>)}<div className="overview-score"><b>{xp}</b><small>общий опыт</small></div></section>
     </div>
   );
@@ -218,14 +243,34 @@ function LibraryTab({books,filter,search,setFilter,setSearch,onSelectBook}:{book
   return <section className="cabinet-library"><div className="cabinet-section-head"><div><h2>Моя библиотека</h2><p>24 книги · 8 прочитано · 3 читаю</p></div><label><Search size={18}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Найти книгу"/></label></div><div className="cabinet-filters">{[["all","Все"],["reading","Читаю"],["read","Прочитано"],["planned","Хочу прочитать"]].map(([id,label])=><button key={id} className={filter===id?"active":""} onClick={()=>setFilter(id as typeof filter)}>{label}</button>)}</div><div className="cabinet-book-grid">{books.map(book=><BookCard book={book} key={book.id} onOpen={()=>onSelectBook(book)}/>)}</div></section>;
 }
 
-function InventoryTab(){
+function InventoryTab({ completedMaps }: { completedMaps: number }){
+  const completedPoints = Math.min(mapRegions.length, Math.max(0, completedMaps));
   const artifacts=[{name:"Перо Первой Страницы",rarity:"Легендарный",text:"Увеличивает получение опыта на 15%."},{name:"Фонарь Шёпота",rarity:"Редкий",text:"Освещает скрытые подсказки на карте мира."},{name:"Печать Пергамента",rarity:"Эпический",text:"Снижает стоимость открытия страниц на 10%."},{name:"Закладка Вечности",rarity:"Редкий",text:"Увеличивает запас энергии на 1."},{name:"Песочные часы Анналии",rarity:"Легендарный",text:"Сокращает время ожидания чтения на 20%."}];
-  return <section className="cabinet-inventory"><div className="cabinet-section-head"><div><h2>Инвентарь</h2><p>Собранные ресурсы и артефакты путешествия</p></div></div><div className="currency-row"><article><Coins/><span>Золотые чернила<b>1 240</b></span></article><article><Gem/><span>Кристаллы памяти<b>86</b></span></article><article><Medallion/><span>Жетоны гильдии<b>315</b></span></article></div><div className="fragment-strip"><h3>Осколки Великой Книги — 4 из 7</h3>{[0,1,2,3,4,5,6].map(n=><i className={n>3?"locked":""} key={n}>{n>3?<Lock size={18}/>:"✦"}</i>)}</div><h3 className="cabinet-subtitle">✦ Артефакты</h3><div className="artifact-grid">{artifacts.map((item,index)=><article key={item.name}><img src={`${import.meta.env.BASE_URL}collector-cards/card-${index+1}.webp`} alt=""/><h4>{item.name}</h4><b>{item.rarity}</b><p>{item.text}</p>{index<2&&<button>{index===0?<><Check size={14}/> Экипировано</>:"Экипировать"}</button>}</article>)}</div></section>;
+  return <section className="cabinet-inventory"><div className="cabinet-section-head"><div><h2>Инвентарь</h2><p>Собранные ресурсы и артефакты путешествия</p></div></div><div className="currency-row"><article><Coins/><span>Золотые чернила<b>1 240</b></span></article><article><Gem/><span>Кристаллы памяти<b>86</b></span></article><article><Medallion/><span>Жетоны гильдии<b>315</b></span></article></div><div className="fragment-strip"><h3>Осколки Великой Книги — {completedPoints} из 6</h3>{mapRegions.map((region,index)=><i className={index>=completedPoints?"locked":""} key={region.title} title={region.title}><span className="shard-art" style={atlasCell(index,3)}/>{index>=completedPoints&&<Lock size={18}/>}</i>)}</div><h3 className="cabinet-subtitle">✦ Артефакты</h3><div className="artifact-grid">{artifacts.map((item,index)=><article key={item.name}><span className="collector-atlas-art" style={atlasCell((index+1)%6,3)} role="img" aria-label={item.name}/><h4>{item.name}</h4><b>{item.rarity}</b><p>{item.text}</p>{index<2&&<button>{index===0?<><Check size={14}/> Экипировано</>:"Экипировать"}</button>}</article>)}</div></section>;
 }
 
-function AchievementsTab(){return <section className="cabinet-achievements"><div className="cabinet-section-head"><div><h2>Достижения</h2><p>12 получено · 24 всего</p></div></div><article className="next-achievement"><i><Trophy size={40}/></i><div><small>Ближайшая цель</small><h3>Мастер пути</h3><p>Пройдите все карты</p><span><em style={{width:"34%"}}/></span></div><b>2 из 6</b><aside>Награда<strong>Особый титул<br/>и знак пути</strong></aside></article><div className="achievement-columns"><div><h3>Полученные</h3><div className="cabinet-achievement-grid">{achievements.slice(0,4).map(({icon:Icon,title,text})=><article key={title}><Check size={13}/><i><Icon size={37}/></i><h4>{title}</h4><p>{text}</p></article>)}</div></div><div><h3>Закрытые</h3><div className="cabinet-achievement-grid">{[...achievements.slice(4),{icon:Gem,title:"Хранитель осколков",text:"Соберите все осколки"},{icon:Library,title:"Легенда библиотеки",text:"Соберите все книги"}].map(({icon:Icon,title,text})=><article className="locked" key={title}><Lock size={13}/><i><Icon size={37}/></i><h4>{title}</h4><p>{text}</p></article>)}</div></div></div></section>}
+function AchievementsTab({ completedMaps }: { completedMaps: number }){
+  const completedPoints = Math.min(mapRegions.length, Math.max(0, completedMaps));
+  const allAchievements = [
+    {...achievements[0],earned:true,atlas:0},
+    {...achievements[1],earned:true,atlas:1},
+    {...achievements[2],earned:completedPoints>=3,atlas:2},
+    {...achievements[3],earned:true,atlas:3},
+    {...achievements[4],earned:completedPoints===6,atlas:4},
+    {...achievements[5],earned:false,atlas:5},
+    {title:"Хранитель осколков",text:"Соберите все осколки Великой Книги",earned:completedPoints===6,atlas:6},
+    {title:"Легенда библиотеки",text:"Соберите все книги в коллекции",earned:false,atlas:7},
+  ];
+  const earned = allAchievements.filter(item=>item.earned);
+  const locked = allAchievements.filter(item=>!item.earned);
+  return <section className="cabinet-achievements"><div className="cabinet-section-head"><div><h2>Достижения</h2><p>{earned.length} получено · {allAchievements.length} всего</p></div></div><article className="next-achievement"><i className="achievement-atlas-icon" style={atlasCell(4,4)}/><div><small>Ближайшая цель</small><h3>Мастер пути</h3><p>Пройдите все шесть регионов Карты историй</p><span><em style={{width:`${completedPoints/6*100}%`}}/></span></div><b>{completedPoints} из 6</b><aside>Награда<strong>Особый титул<br/>и знак пути</strong></aside></article><div className="achievement-columns"><div><h3>Полученные</h3><div className="cabinet-achievement-grid">{earned.map((item)=><article key={item.title}><Check size={13}/><i className="achievement-atlas-icon" style={atlasCell(item.atlas,4)}/><h4>{item.title}</h4><p>{item.text}</p></article>)}</div></div><div><h3>Закрытые</h3><div className="cabinet-achievement-grid">{locked.map((item)=><article className="locked" key={item.title}><Lock size={13}/><i className="achievement-atlas-icon" style={atlasCell(item.atlas,4)}/><h4>{item.title}</h4><p>{item.text}</p></article>)}</div></div></div></section>}
 
-function CollectorTab(){const names=["Анналия","Люминар","Инкогнита","Нова","Кси","Великая Библиотека"];return <section className="cabinet-collector"><div className="cabinet-section-head"><div><h2>Коллекционер</h2><p>18 из 42 карточек</p></div><label><Search size={18}/><input placeholder="Найти карточку"/></label></div><div className="cabinet-filters"><button className="active">Все</button><button>Персонажи</button><button>Места</button><button>Артефакты</button><button>Редкие</button></div><div className="collection-progress">До новой карточки — <b>2 истории</b><i><em style={{width:"56%"}}/></i></div><div className="collection-grid">{names.map((name,index)=><article key={name}><img src={`${import.meta.env.BASE_URL}collector-cards/card-${index}.webp`} alt={name}/><h3>{name}</h3><p>{index>3?"Легендарная":index===1||index===2?"Редкая":"Обычная"}</p></article>)}{[1,2].map(n=><article className="locked" key={n}><Lock size={42}/><h3>Не открыто</h3></article>)}</div></section>}
+function CollectorTab(){
+  const [query,setQuery]=useState("");
+  const [filter,setFilter]=useState("Все");
+  const [flipped,setFlipped]=useState<string|null>(null);
+  const filtered=collectorCards.filter(card=>(filter==="Все"||card.category===filter||(filter==="Редкие"&&(card.rarity==="Редкая"||card.rarity==="Легендарная")))&&card.name.toLowerCase().includes(query.toLowerCase()));
+  return <section className="cabinet-collector"><div className="cabinet-section-head"><div><h2>✦ Коллекционер</h2><p>18 из 42 карточек</p></div><label><Search size={18}/><input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Найти карточку"/></label></div><div className="collector-toolbar"><div className="cabinet-filters">{["Все","Персонажи","Места","Артефакты","Редкие"].map(item=><button key={item} className={filter===item?"active":""} onClick={()=>setFilter(item)}>{item}</button>)}</div><div className="collection-progress"><span>До новой карточки —</span><b>2 истории</b><i><em style={{width:"56%"}}/></i><div aria-hidden="true">✦</div></div></div><div className="collection-grid">{filtered.map((card)=>{const index=collectorCards.indexOf(card);const isFlipped=flipped===card.name;return <button type="button" className={`collector-flip-card ${isFlipped?"is-flipped":""}`} key={card.name} onClick={()=>setFlipped(isFlipped?null:card.name)} aria-pressed={isFlipped} aria-label={`${card.name}. ${isFlipped?"Показать лицевую сторону":"Открыть историю карточки"}`}><span className="collector-card-inner"><span className="collector-card-face collector-card-front"><span className="collector-atlas-art" style={atlasCell(index,3)} role="img" aria-label={card.name}/><strong>{card.name}</strong><small className={`rarity rarity-${card.rarity.toLowerCase()}`}>{card.rarity} ✦</small><em>Нажмите, чтобы перевернуть</em></span><span className="collector-card-face collector-card-back"><i>✦</i><strong>{card.name}</strong><p>{card.lore}</p><small>{card.category}</small></span></span></button>})}{filter==="Все"&&[1,2].map(n=><article className="collector-locked-card" key={n}><Lock size={42}/><h3>Не открыто</h3><p>Продолжайте путь</p></article>)}</div>{filtered.length===0&&<p className="collector-empty">Такая карточка пока не найдена в архиве.</p>}<div className="collector-ornament" aria-hidden="true">✦</div></section>}
 
 function Medallion(){return <Star size={20}/>}
 
