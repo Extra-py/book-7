@@ -516,7 +516,6 @@ function App() {
         </button>
         <nav className="main-nav" aria-label="Главная навигация">
           <button className={`nav-link ${page === "home" ? "active" : ""}`} onClick={() => navigate("home")}>Главная</button>
-          <button className="nav-link" onClick={() => navigate("learning")}>Обучение</button>
           <button className={`nav-link ${page === "contracts" ? "active" : ""}`} onClick={() => navigate("contracts")}>Контракты</button>
           <button className={`nav-link ${page === "bestiary" ? "active" : ""}`} onClick={() => navigate("bestiary")}>Бестиарий</button>
           <button className={`nav-link ${page === "alchemy" ? "active" : ""}`} onClick={() => navigate("alchemy")}>Алхимия</button>
@@ -554,6 +553,9 @@ function App() {
         >
           <span className={theme === "light" ? "active" : ""}><Sun size={16} /></span>
           <span className={theme === "dark" ? "active" : ""}><Moon size={16} /></span>
+        </button>
+        <button className="world-switch-button blue-world-switch" onClick={() => navigate("learning")} title="Перейти в мир обучения" aria-label="Перейти в мир обучения">
+          <img src={`${import.meta.env.BASE_URL}brand/world-switch-v1.webp`} alt="" /><span>Мир обучения</span>
         </button>
         {authSession ? (
           <>
@@ -606,7 +608,6 @@ function App() {
               <div className="mobile-nav-list">
                 <button onClick={() => navigate("portal")}><span>Единая главная</span><ChevronRight size={17} /></button>
                 <button className={page === "home" ? "active" : ""} onClick={() => navigate("home")}><span>Главная</span><ChevronRight size={17} /></button>
-                <button onClick={() => navigate("learning")}><span>Обучение</span><ChevronRight size={17} /></button>
                 <button className={page === "contracts" ? "active" : ""} onClick={() => navigate("contracts")}><span>Контракты</span><ChevronRight size={17} /></button>
                 <button className={page === "bestiary" ? "active" : ""} onClick={() => navigate("bestiary")}><span>Бестиарий</span><ChevronRight size={17} /></button>
                 <button className={page === "alchemy" ? "active" : ""} onClick={() => navigate("alchemy")}><span>Алхимия</span><ChevronRight size={17} /></button>
@@ -619,6 +620,7 @@ function App() {
                 <button className={page === "collector" ? "active" : ""} onClick={() => navigate("collector")}>{authSession ? <Medal size={18} /> : <LockKeyhole size={18} />}<span><b>Коллекционер</b><small>{authSession ? "Полученные карточки" : "Требуется вход"}</small></span></button>
               </div>
               <div className="mobile-menu-footer">
+                <button className="mobile-world-switch" onClick={() => navigate("learning")}><img src={`${import.meta.env.BASE_URL}brand/world-switch-v1.webp`} alt=""/><span>Перейти в мир обучения</span></button>
                 <button className="mobile-theme-switch" onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}>
                   {theme === "dark" ? <Moon size={18} /> : <Sun size={18} />}
                   <span>{theme === "dark" ? "Тёмная тема" : "Светлая тема"}</span>
@@ -649,7 +651,6 @@ function App() {
             onOpenLibrary={() => navigate("home")}
             onOpenLearning={() => navigate("learning")}
             onLogin={() => setAuthView("login")}
-            onRegister={() => setAuthView("register")}
             onOpenProfile={() => navigate("trail")}
             theme={theme}
             onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")}
@@ -666,6 +667,8 @@ function App() {
             onOpenDashboard={openLearningDashboard}
             onOpenCalculator={() => navigate("calculator")}
             onRequireAuth={requireLearningAuth}
+            onLogin={() => setAuthView("login")}
+            onRegister={() => setAuthView("register")}
             theme={theme}
             onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")}
           />

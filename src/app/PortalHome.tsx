@@ -8,7 +8,6 @@ type Props = {
   onOpenLibrary: () => void;
   onOpenLearning: () => void;
   onLogin: () => void;
-  onRegister: () => void;
   onOpenProfile: () => void;
   theme: "light" | "dark";
   onToggleTheme: () => void;
@@ -32,10 +31,7 @@ export default function PortalHome(props: Props) {
           {props.isAuthenticated ? (
             <button className="portal-account-button" onClick={props.onOpenProfile}>{props.displayName || "Личный кабинет"}</button>
           ) : (
-            <nav className="portal-auth" aria-label="Авторизация">
-              <button onClick={props.onLogin}>Войти</button>
-              <button onClick={props.onRegister}>Регистрация</button>
-            </nav>
+            <button className="portal-egid-button" onClick={props.onLogin}>Войти по EG ID</button>
           )}
         </div>
       </header>

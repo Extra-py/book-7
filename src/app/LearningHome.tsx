@@ -4,7 +4,7 @@ import LearningOrderModal from "./LearningOrderModal";
 import { LearningOrder, loadLearningOrders, saveLearningOrders } from "./learning";
 
 const BASE = import.meta.env.BASE_URL;
-type Props = { isAuthenticated:boolean; username?:string; displayName?:string; theme:"light"|"dark"; onToggleTheme:()=>void; onOpenPortal:()=>void; onOpenLibrary:()=>void; onOpenDashboard:()=>void; onOpenCalculator:()=>void; onRequireAuth:()=>void };
+type Props = { isAuthenticated:boolean; username?:string; displayName?:string; theme:"light"|"dark"; onToggleTheme:()=>void; onOpenPortal:()=>void; onOpenLibrary:()=>void; onOpenDashboard:()=>void; onOpenCalculator:()=>void; onRequireAuth:()=>void; onLogin:()=>void; onRegister:()=>void };
 
 const services = [
   [ScrollText,"Учебные работы","Курсовые, отчёты и исследования с понятной структурой."],
@@ -34,13 +34,21 @@ export default function LearningHome(props: Props) {
         <button onClick={()=>document.getElementById("learning-masters")?.scrollIntoView({behavior:"smooth"})}>Мастера</button>
         <button onClick={props.onOpenCalculator}>Цифирная палата</button>
         <button onClick={()=>document.getElementById("learning-how")?.scrollIntoView({behavior:"smooth"})}>Как это работает</button>
-        <button onClick={props.onOpenLibrary}>Библиотека</button>
+        <div className="learning-mobile-account">
+          <button className="learning-world-switch" onClick={props.onOpenLibrary}><img src={`${BASE}brand/world-switch-v1.webp`} alt=""/><span>В мир историй</span></button>
+          {props.isAuthenticated ? <button onClick={props.onOpenDashboard}>Личный кабинет</button> : <><button onClick={props.onLogin}>Войти</button><button onClick={props.onRegister}>Регистрация</button></>}
+        </div>
       </nav>
       <button className="theme-toggle section-theme-toggle" onClick={props.onToggleTheme} aria-label={props.theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}>
         <span className={props.theme === "light" ? "active" : ""}><Sun size={16}/></span><span className={props.theme === "dark" ? "active" : ""}><Moon size={16}/></span>
       </button>
       <button className="academy-notice" aria-label="Вестник"><Bell size={18}/></button>
-      <button className="learning-gold-button learning-create-top" onClick={openOrder}>Создать поручение</button>
+      <button className="learning-world-switch" onClick={props.onOpenLibrary} title="Перейти в мир интерактивных историй" aria-label="Перейти в мир интерактивных историй"><img src={`${BASE}brand/world-switch-v1.webp`} alt=""/><span>Мир историй</span></button>
+      {props.isAuthenticated ? (
+        <button className="learning-profile-button" onClick={props.onOpenDashboard}><span>{(props.displayName||props.username||"И").slice(0,1).toUpperCase()}</span><b>{props.displayName||"Личный кабинет"}</b></button>
+      ) : (
+        <div className="learning-auth-actions"><button onClick={props.onLogin}>Войти</button><button onClick={props.onRegister}>Регистрация</button></div>
+      )}
       <button className="learning-menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Меню">{menuOpen?<X/>:<Menu/>}</button>
     </header>
 
