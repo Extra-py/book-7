@@ -26,6 +26,7 @@ const SESSION_KEY = "edustories_auth_session";
 
 export const demoAdmins = [
   { username: "admin", password: "admin1986", displayName: "Администратор EduStories" },
+  { username: "test1", password: "test1993", displayName: "Тестовый Хранитель" },
 ];
 
 export function passwordHash(value: string) {
