@@ -17,6 +17,7 @@
 @import './academy.css';
 @import './footer.css';
 @import './light-overhaul.css';
+@import './admin-panel.css';
 
 :root {
   font-family: "Segoe UI", Arial, sans-serif;
